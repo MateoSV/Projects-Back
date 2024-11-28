@@ -35,4 +35,9 @@ class TaskRepository implements TaskRepositoryInterface
         $task = $this->find($id);
         $task->delete();
     }
+
+    public function getUserTasks(int $userId): Collection
+    {
+        return Task::where('user_id', $userId)->get();
+    }
 }

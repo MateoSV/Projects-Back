@@ -9,4 +9,5 @@ interface TaskServiceInterface
     public function createTask(array $data);
     public function updateTask($id, array $data);
     public function deleteTask($id);
+    public function getUserTasks(int $userId);
 }
