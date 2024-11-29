@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Tasks;
 
 use App\Http\Controllers\Controller;
 use App\Services\TaskService;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 
 class TaskUtilsController extends Controller
@@ -22,6 +21,17 @@ class TaskUtilsController extends Controller
             $userId = (int)$userId;
 
             return response()->json($this->taskService->getUserTasks($userId), 200);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
+    }
+
+    public function getProjectTasks($projectId): JsonResponse
+    {
+        try {
+            $projectId = (int)$projectId;
+
+            return response()->json($this->taskService->getProjectTasks($projectId), 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 500);
         }

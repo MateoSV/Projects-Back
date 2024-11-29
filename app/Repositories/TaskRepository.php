@@ -40,4 +40,9 @@ class TaskRepository implements TaskRepositoryInterface
     {
         return Task::where('user_id', $userId)->get();
     }
+
+    public function getProjectTasks(int $projectId): Collection
+    {
+        return Task::where('project_id', $projectId)->get();
+    }
 }

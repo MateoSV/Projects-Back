@@ -45,4 +45,9 @@ class TaskService implements TaskServiceInterface
     {
         return $this->taskRepository->getUserTasks($userId);
     }
+
+    public function getProjectTasks(int $projectId): Collection
+    {
+        return $this->taskRepository->getProjectTasks($projectId);
+    }
 }

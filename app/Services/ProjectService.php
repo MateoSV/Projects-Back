@@ -33,7 +33,7 @@ class ProjectService implements ProjectServiceInterface
 
     public function updateProject($id, array $data)
     {
-        return $this->projectRepository->update($id, $data);
+        return $this->projectRepository->update($data, $id);
     }
 
     public function deleteProject($id): void

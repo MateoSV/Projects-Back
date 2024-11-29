@@ -39,6 +39,7 @@ class ProjectController extends Controller
             $data = $request->validate([
                 'name' => 'required|string|max:255',
                 'description' => 'nullable|string',
+                'status' => 'required|in:in_progress,completed',
             ]);
 
             return response()->json($this->projectService->createProject($data), 201);
@@ -53,9 +54,10 @@ class ProjectController extends Controller
             $data = $request->validate([
                 'name' => 'required|string|max:255',
                 'description' => 'nullable|string',
+                'status' => 'required|in:in_progress,completed',
             ]);
 
-            return response()->json($this->projectService->updateProject($id, $data));
+            return response()->json($this->projectService->updateProject((int)$id, $data));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 500);
         }

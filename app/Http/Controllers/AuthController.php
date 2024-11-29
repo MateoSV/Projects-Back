@@ -29,7 +29,12 @@ class AuthController extends Controller
                 return response()->json(['error' => 'Unauthorized'], 401);
             }
 
-            return response()->json(['token' => $token]);
+            $userData = $this->authService->getUserRole();
+
+            return response()->json([
+                'user' => $userData,
+                'token' => $token,
+            ]);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 500);
         }
@@ -40,6 +45,27 @@ class AuthController extends Controller
         try {
             $this->authService->logout();
             return response()->json(null, 204);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
+    }
+
+    public function validateToken(): JsonResponse
+    {
+        try {
+            $token = request()->bearerToken();
+            $valid = $this->authService->validateToken($token);
+            return response()->json($valid);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
+    }
+
+    public function me(): JsonResponse
+    {
+        try {
+            $userData = $this->authService->getUserRole();
+            return response()->json($userData);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 500);
         }

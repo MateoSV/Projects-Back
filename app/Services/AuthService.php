@@ -24,4 +24,31 @@ class AuthService implements AuthServiceInterface
     {
         $this->authRepository->logout();
     }
+
+    public function getUserRole(): array
+    {
+        $user = Auth()->user();
+        $permissionNames = $user->getAllPermissions();;
+        $roles = $user->getRoleNames();
+
+        return [
+            ...$user->toArray(),
+            'permissions' => $permissionNames,
+            'roles' => $roles,
+        ];
+    }
+
+    public function validateToken($token): bool
+    {
+        if (!$token) {
+            return false;
+        }
+
+        $accessToken = $this->authRepository->getAccessToken($token);
+
+        if (!$accessToken) {
+            return false;
+        }
+        return true;
+    }
 }

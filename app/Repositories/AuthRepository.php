@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\Auth\AuthRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthRepository implements AuthRepositoryInterface
 {
@@ -19,5 +20,10 @@ class AuthRepository implements AuthRepositoryInterface
     public function logout(): void
     {
         Auth::user()->tokens()->delete();
+    }
+
+    public function getAccessToken($token)
+    {
+        return PersonalAccessToken::findToken($token);
     }
 }
