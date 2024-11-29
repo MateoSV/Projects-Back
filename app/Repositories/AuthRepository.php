@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Interfaces\Auth\AuthRepositoryInterface;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\PersonalAccessToken;
 
@@ -25,5 +26,10 @@ class AuthRepository implements AuthRepositoryInterface
     public function getAccessToken($token)
     {
         return PersonalAccessToken::findToken($token);
+    }
+
+    public function getAllUsers()
+    {
+        return User::all();
     }
 }

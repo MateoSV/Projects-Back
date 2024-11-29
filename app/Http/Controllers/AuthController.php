@@ -70,4 +70,13 @@ class AuthController extends Controller
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }
+
+    public function users()
+    {
+        try {
+            return response()->json($this->authService->getAllUsers());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
+    }
 }

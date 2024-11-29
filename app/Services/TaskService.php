@@ -33,7 +33,7 @@ class TaskService implements TaskServiceInterface
 
     public function updateTask($id, array $data)
     {
-        return $this->taskRepository->update($id, $data);
+        return $this->taskRepository->update($data, (int)$id);
     }
 
     public function deleteTask($id): void

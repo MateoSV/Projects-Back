@@ -11,6 +11,8 @@ class Task extends Model
 
     protected $fillable = ['project_id', 'user_id', 'name', 'status', 'due_date'];
 
+    protected $appends = ['project_name'];
+
     public function project()
     {
         return $this->belongsTo(Project::class);
@@ -19,5 +21,10 @@ class Task extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getProjectNameAttribute()
+    {
+        return $this->project ? $this->project->name : null;
     }
 }

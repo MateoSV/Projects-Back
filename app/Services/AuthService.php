@@ -51,4 +51,9 @@ class AuthService implements AuthServiceInterface
         }
         return true;
     }
+
+    public function getAllUsers()
+    {
+        return $this->authRepository->getAllUsers();
+    }
 }

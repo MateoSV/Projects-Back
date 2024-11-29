@@ -14,6 +14,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('validate-token', [AuthController::class, 'validateToken']);
     Route::get('users/me', [AuthController::class, 'me']);
     Route::get('projects/{project}/tasks', [TaskUtilsController::class, 'getProjectTasks']);
+    Route::get('users', [AuthController::class, 'users']);
 
     Route::middleware(['permission:view tasks'])->group(function () {
         Route::get('tasks', [TaskController::class, 'index']);
