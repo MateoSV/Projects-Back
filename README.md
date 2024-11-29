@@ -1,4 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Analisis
+
+La arquitectura de la aplicación se basa en la separación de responsabilidades, dividiendo la lógica en diferentes capas para mantener el código limpio y manejable. Las capas principales son:  
+
+- Controladores: Manejan las solicitudes HTTP y responden con datos JSON. No contienen lógica de negocio.
+- Servicios: Contienen la lógica de negocio y coordinan las operaciones entre los controladores y los repositorios.
+- Repositorios: Encargados de la interacción con la base de datos. Realizan operaciones CRUD y otras consultas.
+
+## Servicios y Repositorios
+- Servicios: Los servicios encapsulan la lógica de negocio y proporcionan una interfaz clara para los controladores. Esto permite que la lógica de negocio sea reutilizable y testeable de manera independiente.  
+- Repositorios: Los repositorios se encargan de la persistencia de datos. Utilizan Eloquent para interactuar con la base de datos y proporcionan métodos para realizar operaciones CRUD.
+
+## Principios SOLID
+- Single Responsibility Principle (SRP): Cada clase tiene una única responsabilidad. Los controladores manejan las solicitudes HTTP, los servicios contienen la lógica de negocio y los repositorios gestionan la persistencia de datos.
+- Open/Closed Principle (OCP): Las clases están abiertas para extensión pero cerradas para modificación. Esto se logra mediante la inyección de dependencias y el uso de interfaces.
+- Interface Segregation Principle (ISP): Cada interfaz define métodos específicos para una funcionalidad particular.
+
+## Arquitectura de la Aplicación
+La aplicación sigue una arquitectura en capas, donde cada capa tiene una responsabilidad específica. Esta arquitectura facilita el mantenimiento y la escalabilidad de la aplicación. 
+
+### Controladores:  
+- AuthController: Maneja la autenticación de usuarios.
+- ProjectController: Gestiona las operaciones relacionadas con proyectos.
+- TaskController: Gestiona las operaciones relacionadas con tareas.
+
+### Servicios:  
+- AuthService: Contiene la lógica de negocio para la autenticación y autorización.
+- ProjectService: Contiene la lógica de negocio para la gestión de proyectos.
+- TaskService: Contiene la lógica de negocio para la gestión de tareas.
+
+### Repositorios:  
+- AuthRepository: Gestiona la persistencia de datos relacionados con la autenticación.
+- ProjectRepository: Gestiona la persistencia de datos relacionados con proyectos.
+- TaskRepository: Gestiona la persistencia de datos relacionados con tareas.
+
+### Patrones Aplicados
+- MVC (Model-View-Controller): Divide la aplicación en tres componentes principales: modelos, vistas y controladores. Es por defecto el patron usado por laravel
+- Repository Pattern: Separa la lógica de acceso a datos de la lógica de negocio, proporcionando una abstracción sobre la capa de datos.
+- Service Layer Pattern: Define una capa de servicios que contiene la lógica de negocio y actúa como intermediario entre los controladores y los repositorios.
+- Dependency Injection: Facilita la inyección de dependencias en los controladores y servicios, promoviendo la reutilización de código y facilitando las pruebas unitarias.
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
